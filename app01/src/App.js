@@ -33,6 +33,10 @@ function App() {
     }));
   }
 
+  const handleRemoveTodo = (id) => {
+    setTodos(todos.filter(todo=>todo.id!==id));
+  }
+
   return (
     <div className="App">
       
@@ -53,7 +57,12 @@ function App() {
               onChange={()=>handleToggleTodo(todo.id)}
             />
             <span>{todo.title}</span>
-            <button className="deleteTodo">&times;</button>
+            <button
+              className="deleteTodo"
+              onClick={()=>handleRemoveTodo(todo.id)}
+            >
+              &times;
+            </button>
           </li>)
         }
       </ul>
