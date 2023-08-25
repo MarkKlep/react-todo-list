@@ -1,17 +1,22 @@
-import React from 'react'
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { toggleTodo, removeTodo } from '../store/todosReducers';
 
-const TodoItem = ({id, title, completed, toggleTodo, removeTodo}) => {
+const TodoItem = ({id, title, completed}) => {
+
+  const dispatch = useDispatch();
+
   return (
     <li>
         <input 
             type="checkbox" 
             checked={completed} 
-            onChange={()=>toggleTodo(id)}
+            onChange={()=>dispatch(toggleTodo({id}))}
         />
         <span>{title}</span>
         <button
             className="deleteTodo"
-            onClick={()=>removeTodo(id)}
+            onClick={()=>dispatch(removeTodo({id}))}
         >
             &times;
         </button>
