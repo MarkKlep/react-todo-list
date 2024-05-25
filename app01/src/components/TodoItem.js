@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toggleTodo, removeTodo, editTodo } from '../store/todosReducers';
 
-const TodoItem = ({id, title, completed}) => {
+const TodoItem = ({ id, title, completed }) => {
 
   const [isEditing, setIsEditing] = useState(false);
 
