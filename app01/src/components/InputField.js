@@ -7,6 +7,7 @@ const InputField = ({text, addText, addTodo}) => {
             type="text"
             value={text}
             onChange={e=>addText(e.target.value)} 
+            placeholder='Enter your todo here...'
         />
         <button onClick={addTodo}>Add Todo</button>
     </>
