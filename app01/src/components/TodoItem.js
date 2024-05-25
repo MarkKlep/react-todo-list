@@ -12,7 +12,7 @@ const TodoItem = ({ id, title, completed }) => {
     <li>
       <input type="checkbox" checked={completed} onChange={() => dispatch(toggleTodo({id}))}/>
       {isEditing ? <input type="text" value={title} onChange={(e) => dispatch(editTodo({id, title: e.target.value}))}/> : <span>{title}</span>}
-      <button onClick={() => dispatch(removeTodo({id}))}>Delete</button>
+      <span className='deleteTodo' onClick={() => dispatch(removeTodo({id}))}>&times;</span>
       <button onClick={() => setIsEditing(!isEditing)}>{isEditing ? 'Save' : 'Edit'}</button>
     </li>
   )
