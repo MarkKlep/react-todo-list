@@ -27,5 +27,5 @@ const todosReducers = createSlice({
     }
 });
 
-export const {addTodo, toggleTodo, removeTodo, editTodo} = todosReducers.actions;
+export const { addTodo, toggleTodo, removeTodo, editTodo } = todosReducers.actions;
 export default todosReducers.reducer;

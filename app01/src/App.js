@@ -2,7 +2,7 @@ import './App.css';
 import TodoList from './components/TodoList';
 import InputField from './components/InputField';
 import { useState } from 'react';
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addTodo } from './store/todosReducers';
 
 function App() {
