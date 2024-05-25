@@ -16,3 +16,19 @@ ul {
 input:checked + span {
   text-decoration: line-through;
 }
+
+#todoInput {
+  padding: 10px;
+  margin: 10px;
+  color: #fff;
+  border-radius: 5%;
+  border: none;
+  cursor: pointer;
+  background-color: #00008B;
+  transition: background-color 1s 
+}
+
+#todoInput:hover {
+  background-color: #ADD8E6;
+  transition: background-color 1s
+}
