@@ -1,13 +1,24 @@
 import { FC } from "react";
 import { TTodo } from "../types/todo";
+import { toggleTodoStatus } from "../store/todosSlice";
+import { deleteTodo } from "../store/todosSlice";
+import { useAppDispatch } from "../store/hooks";
 
 interface TodoItemProps {
     todo: TTodo;
-    handleChangeStatus: (id: string) => void;
-    handleDeleteTodo: (id: string) => void;
 }
 
-export const TodoItem: FC<TodoItemProps> = ({ todo, handleChangeStatus, handleDeleteTodo }) => {
+export const TodoItem: FC<TodoItemProps> = ({ todo }) => {
+    const dispatch = useAppDispatch();
+
+    const handleChangeStatus = (id: string) => {
+        dispatch(toggleTodoStatus(id));
+    };
+
+    const handleDeleteTodo = (id: string) => {
+        dispatch(deleteTodo(id));
+    };
+
     return (
         <li className="flex items-center space-x-2" key={todo.id}>
             <input

@@ -1,14 +1,9 @@
-import { FC } from "react";
 import { TodoItem } from "./TodoItem";
-import { TTodo } from "../types/todo";
+import { useAppSelector } from "../store/hooks";
 
-interface TodoListProps {
-    todos: TTodo[];
-    handleChangeStatus: (id: string) => void;
-    handleDeleteTodo: (id: string) => void;
-}
+export const TodoList = () => {
+    const todos = useAppSelector((state) => state.todos);
 
-export const TodoList: FC<TodoListProps> = ({ todos, handleChangeStatus, handleDeleteTodo }) => {
     return (
         <ul>
             {
@@ -16,8 +11,6 @@ export const TodoList: FC<TodoListProps> = ({ todos, handleChangeStatus, handleD
                     <TodoItem
                         key={todo.id}
                         todo={todo}
-                        handleChangeStatus={handleChangeStatus}
-                        handleDeleteTodo={handleDeleteTodo}
                     />
                 ))
             }

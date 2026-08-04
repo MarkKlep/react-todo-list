@@ -12,6 +12,17 @@ test('add todo', async ({ page }) => {
     await expect(todoItem).toBeVisible();
 });
 
+test('add todo by pressing Enter', async ({ page }) => {
+    await page.goto('/');
+
+    const input = page.locator('input[type="text"]');
+    await input.fill('New Todo');
+    await input.press('Enter');
+
+    const todoItem = page.locator('li').filter({ hasText: 'New Todo' });
+    await expect(todoItem).toBeVisible();
+});
+
 test('toggle todo status', async ({ page }) => {
     await page.goto('/');
 
