@@ -11,6 +11,12 @@ class EventEmitter {
         }
 
         this.events[eventName].push(listenerFn);
+
+        return {
+            off: () => {
+                this.events[eventName] = this.events[eventName].filter(fn => fn !== listenerFn);
+            }
+        }
     }
 
     emit(eventName, ...args) {
@@ -26,9 +32,10 @@ class EventEmitter {
 
 const em = new EventEmitter();
 
-em.on('request', (data) => {
+const sub = em.on('request', (data) => {
     console.log(`Request received with data: ${data}`);
 });
 
 em.emit('request', 'Hello, World!');
+sub.off();
 em.emit('request', 'Another request');
