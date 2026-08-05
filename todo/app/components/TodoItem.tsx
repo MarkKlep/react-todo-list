@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { CSSProperties, FC } from "react";
 import { TTodo } from "../types/todo";
 import { toggleTodoStatus } from "../store/todosSlice";
 import { deleteTodo } from "../store/todosSlice";
@@ -6,9 +6,10 @@ import { useAppDispatch } from "../store/hooks";
 
 interface TodoItemProps {
     todo: TTodo;
+    style?: CSSProperties;
 }
 
-export const TodoItem: FC<TodoItemProps> = ({ todo }) => {
+export const TodoItem: FC<TodoItemProps> = ({ todo, style }) => {
     const dispatch = useAppDispatch();
 
     const handleChangeStatus = (id: string) => {
@@ -20,7 +21,7 @@ export const TodoItem: FC<TodoItemProps> = ({ todo }) => {
     };
 
     return (
-        <li className="flex items-center space-x-2" key={todo.id}>
+        <li className="flex items-center space-x-2" style={style}>
             <input
                 type='checkbox'
                 checked={todo.isDone}
