@@ -11,6 +11,6 @@ function performJob(job) {
 }
 
 parentPort.once('message', (job) => {
-    const result = performJob(job);
-    parentPort.postMessage(result);
+    const res = performJob(job);
+    parentPort.postMessage(res);
 });
