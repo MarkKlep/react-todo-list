@@ -1,4 +1,4 @@
-import { CSSProperties, FC } from "react";
+import { CSSProperties, FC, memo } from "react";
 import { TTodo } from "../types/todo";
 import { toggleTodoStatus } from "../store/todosSlice";
 import { deleteTodo } from "../store/todosSlice";
@@ -9,7 +9,7 @@ interface TodoItemProps {
     style?: CSSProperties;
 }
 
-export const TodoItem: FC<TodoItemProps> = ({ todo, style }) => {
+export const TodoItem: FC<TodoItemProps> = memo(({ todo, style }) => {
     const dispatch = useAppDispatch();
 
     const handleChangeStatus = (id: string) => {
@@ -40,4 +40,4 @@ export const TodoItem: FC<TodoItemProps> = ({ todo, style }) => {
             </button>
         </li>
     )
-}
+});

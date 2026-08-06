@@ -1,4 +1,4 @@
-import { FC, UIEvent, useState } from "react";
+import { FC, UIEvent, useMemo, useState } from "react";
 import { TodoItem } from "./TodoItem";
 import { useAppSelector } from "../store/hooks";
 
@@ -7,7 +7,7 @@ const CONTAINER_HEIGHT = 500;
 const OVERSCAN = 80;
 
 export const TodoList: FC<{ searchTerm: string; statusFilter: 'all' | 'done' | 'not-done' }> = ({ searchTerm, statusFilter }) => {
-    const allTodos = useAppSelector((state) => state.todos);
+    const allTodos = useAppSelector((state) => Object.values(state.todos));
     const [scrollTop, setScrollTop] = useState(0);
 
     const handleScroll = (event: UIEvent<HTMLDivElement>) => {
@@ -15,15 +15,17 @@ export const TodoList: FC<{ searchTerm: string; statusFilter: 'all' | 'done' | '
     };
 
     const term = searchTerm.trim().toLowerCase();
-    const todos = (term === ""
-        ? allTodos
-        : allTodos.filter(todo => todo.title.toLowerCase().includes(term)))
-        .filter(todo => {
-            if (statusFilter === 'all') return true;
-            if (statusFilter === 'done') return todo.isDone;
-            if (statusFilter === 'not-done') return !todo.isDone;
-            return false;
-        });
+    const todos = useMemo(() => {
+        return (term === ""
+            ? allTodos
+            : allTodos.filter(todo => todo.title.toLowerCase().includes(term)))
+            .filter(todo => {
+                if (statusFilter === 'all') return true;
+                if (statusFilter === 'done') return todo.isDone;
+                if (statusFilter === 'not-done') return !todo.isDone;
+                return false;
+            });
+    }, [allTodos, term, statusFilter]);
 
     const startIndex = Math.max(
         0,

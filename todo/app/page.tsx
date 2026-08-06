@@ -5,6 +5,7 @@ import { TodoList } from "./components/TodoList";
 import { useAppDispatch } from "./store/hooks";
 import { addTodo, addTodos } from "./store/todosSlice";
 import { TTodo } from "./types/todo";
+import { useDebouncedValue } from "./hooks/useDebouncedValue";
 
 const generateRandomTodos = () => {
   const todos: TTodo[] = [];
@@ -23,6 +24,7 @@ export default function Home() {
   const [inputValue, setInputValue] = useState<string>("");
 
   const [inputSearch, setInputSearch] = useState<string>("");
+  const debouncedSearch = useDebouncedValue(inputSearch, 300);
   const [statusFilter, setStatusFilter] = useState<'all' | 'done' | 'not-done'>("all");
 
   const handleAddTodo = () => {
@@ -94,7 +96,7 @@ export default function Home() {
         </div>
       </div>
       <div className="mt-4 mx-auto max-w-md">
-        <TodoList searchTerm={inputSearch} statusFilter={statusFilter} />
+        <TodoList searchTerm={debouncedSearch} statusFilter={statusFilter} />
       </div>
     </div>
   );

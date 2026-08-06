@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TTodo } from "../types/todo";
 
-const initialState: TTodo[] = [];
+const initialState: Record<string, TTodo> = {};
 
 const todosSlice = createSlice({
   name: "todos",
@@ -9,7 +9,7 @@ const todosSlice = createSlice({
   reducers: {
     addTodo: {
       reducer: (state, action: PayloadAction<TTodo>) => {
-        state.push(action.payload);
+        state[action.payload.id] = action.payload;
       },
       prepare: (title: string) => ({
         payload: {
@@ -20,16 +20,20 @@ const todosSlice = createSlice({
       }),
     },
     addTodos: (state, action: PayloadAction<TTodo[]>) => {
-      state.push(...action.payload);
+      const ids = action.payload.map((todo) => todo.id);
+      const existingIds = Object.keys(state);
+      const newIds = ids.filter((id) => !existingIds.includes(id));
+      const newTodos = action.payload.filter((todo) => newIds.includes(todo.id));
+      Object.assign(state, newTodos.reduce((acc, todo) => { acc[todo.id] = todo; return acc; }, {} as Record<string, TTodo>));
     },
     toggleTodoStatus: (state, action: PayloadAction<string>) => {
-      const todo = state.find((todo) => todo.id === action.payload);
+      const todo = state[action.payload];
       if (todo) {
         todo.isDone = !todo.isDone;
       }
     },
     deleteTodo: (state, action: PayloadAction<string>) => {
-      return state.filter((todo) => todo.id !== action.payload);
+      delete state[action.payload];
     },
   },
 });
