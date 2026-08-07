@@ -32,11 +32,17 @@ const todosSlice = createSlice({
         todo.isDone = !todo.isDone;
       }
     },
+    updateTodoTitle: (state, action: PayloadAction<{ id: string; title: string }>) => {
+      const todo = state[action.payload.id];
+      if (todo) {
+        todo.title = action.payload.title;
+      }
+    },
     deleteTodo: (state, action: PayloadAction<string>) => {
       delete state[action.payload];
     },
   },
 });
 
-export const { addTodos, addTodo, toggleTodoStatus, deleteTodo } = todosSlice.actions;
+export const { addTodos, addTodo, toggleTodoStatus, updateTodoTitle, deleteTodo } = todosSlice.actions;
 export default todosSlice.reducer;

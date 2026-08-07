@@ -1,4 +1,5 @@
 import { CSSProperties, FC, memo } from "react";
+import Link from "next/link";
 import { TTodo } from "../types/todo";
 import { toggleTodoStatus } from "../store/todosSlice";
 import { deleteTodo } from "../store/todosSlice";
@@ -31,11 +32,14 @@ export const TodoItem: FC<TodoItemProps> = memo(({ todo, style }) => {
                 checked={todo.isDone}
                 onChange={() => handleChangeStatus(todo.id)}
             />
-            <span className={`flex-1 truncate text-gray-800 ${todo.isDone ? 'text-gray-400 line-through' : ''}`}>
+            <Link
+                href={`/todos/${todo.id}`}
+                className={`flex-1 truncate text-gray-800 hover:underline ${todo.isDone ? 'text-gray-400 line-through' : ''}`}
+            >
                 {
                     todo.title
                 }
-            </span>
+            </Link>
             <button
                 className="shrink-0 rounded px-2 py-1 text-sm font-medium text-red-500 hover:cursor-pointer hover:bg-red-50 hover:text-red-700"
                 onClick={() => handleDeleteTodo(todo.id)}

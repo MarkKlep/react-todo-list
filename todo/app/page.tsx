@@ -1,23 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { TodoList } from "./components/TodoList";
 import { useAppDispatch } from "./store/hooks";
-import { addTodo, addTodos } from "./store/todosSlice";
-import { TTodo } from "./types/todo";
+import { addTodo } from "./store/todosSlice";
 import { useDebouncedValue } from "./hooks/useDebouncedValue";
-
-const generateRandomTodos = () => {
-  const todos: TTodo[] = [];
-  for (let i = 0; i < 10000; i++) {
-    todos.push({
-      id: crypto.randomUUID(),
-      title: `Todo ${i + 1}`,
-      isDone: Math.random() > 0.5,
-    });
-  }
-  return todos;
-};
 
 export default function Home() {
   const dispatch = useAppDispatch();
@@ -42,11 +29,6 @@ export default function Home() {
     const filterValue = event.target.value;
     setStatusFilter(filterValue as 'all' | 'done' | 'not-done');
   };
-
-  useEffect(() => {
-    const randomTodos = generateRandomTodos();
-    dispatch(addTodos(randomTodos));
-  }, []);
 
   return (
     <div className="flex w-full flex-1 justify-center px-4 py-10">
