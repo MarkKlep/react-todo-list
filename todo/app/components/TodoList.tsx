@@ -39,13 +39,13 @@ export const TodoList: FC<{ searchTerm: string; statusFilter: 'all' | 'done' | '
 
     return (
         <>
-            <div className="sticky top-0 z-10 border-b border-gray-200 bg-gray-50 px-3 py-2 text-sm font-medium text-gray-600">
+            <div className="sticky top-0 z-10 border-b border-gray-200 bg-gray-50 px-3 py-2 text-sm font-medium text-gray-600 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300">
                 <span>{todos.length} todos</span>
             </div>
             <div
                 onScroll={handleScroll}
                 style={{ height: CONTAINER_HEIGHT, overflowY: "auto" }}
-                className="bg-white"
+                className="bg-white dark:bg-gray-950"
             >
                 <ul style={{ height: todos.length * ROW_HEIGHT, position: "relative" }}>
                     {visibleTodos.map((todo, i) => {

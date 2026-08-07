@@ -15,8 +15,8 @@ export default function TodoDetailPage() {
     return (
       <div className="flex w-full flex-1 justify-center px-4 py-10">
         <div className="w-full max-w-md text-center">
-          <h1 className="text-2xl font-semibold text-gray-900">Todo not found</h1>
-          <p className="mt-2 text-gray-600">It may have been deleted, or the link is invalid.</p>
+          <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">Todo not found</h1>
+          <p className="mt-2 text-gray-600 dark:text-gray-400">It may have been deleted, or the link is invalid.</p>
           <Link href="/" className="mt-6 inline-block text-blue-500 hover:underline">
             ← Back to list
           </Link>
@@ -51,7 +51,7 @@ function TodoDetail({ todo }: { todo: TTodo }) {
           ← Back to list
         </Link>
 
-        <h1 className="mt-4 text-2xl font-semibold text-gray-900">Todo details</h1>
+        <h1 className="mt-4 text-2xl font-semibold text-gray-900 dark:text-gray-100">Todo details</h1>
 
         <form
           className="mt-6 flex gap-2"
@@ -61,7 +61,7 @@ function TodoDetail({ todo }: { todo: TTodo }) {
           }}
         >
           <input
-            className="flex-1 rounded border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none"
+            className="flex-1 rounded border border-gray-300 bg-white px-3 py-2 text-gray-900 focus:border-blue-500 focus:outline-none dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100"
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -74,7 +74,7 @@ function TodoDetail({ todo }: { todo: TTodo }) {
           </button>
         </form>
 
-        <label className="mt-4 flex items-center gap-2 text-sm text-gray-600">
+        <label className="mt-4 flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
           <input
             className="h-4 w-4 cursor-pointer accent-blue-500"
             type="checkbox"
@@ -85,7 +85,7 @@ function TodoDetail({ todo }: { todo: TTodo }) {
         </label>
 
         <button
-          className="mt-6 rounded px-3 py-2 text-sm font-medium text-red-500 hover:cursor-pointer hover:bg-red-50 hover:text-red-700"
+          className="mt-6 rounded px-3 py-2 text-sm font-medium text-red-500 hover:cursor-pointer hover:bg-red-50 hover:text-red-700 dark:hover:bg-red-950 dark:hover:text-red-400"
           onClick={handleDelete}
         >
           Delete todo

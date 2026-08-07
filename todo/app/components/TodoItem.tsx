@@ -23,7 +23,7 @@ export const TodoItem: FC<TodoItemProps> = memo(({ todo, style }) => {
 
     return (
         <li
-            className="flex items-center gap-3 border-b border-gray-100 px-3 last:border-b-0 hover:bg-gray-50"
+            className="flex items-center gap-3 border-b border-gray-100 px-3 last:border-b-0 hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-900"
             style={style}
         >
             <input
@@ -34,14 +34,14 @@ export const TodoItem: FC<TodoItemProps> = memo(({ todo, style }) => {
             />
             <Link
                 href={`/todos/${todo.id}`}
-                className={`flex-1 truncate text-gray-800 hover:underline ${todo.isDone ? 'text-gray-400 line-through' : ''}`}
+                className={`flex-1 truncate text-gray-800 hover:underline dark:text-gray-100 ${todo.isDone ? 'text-gray-400 line-through dark:text-gray-500' : ''}`}
             >
                 {
                     todo.title
                 }
             </Link>
             <button
-                className="shrink-0 rounded px-2 py-1 text-sm font-medium text-red-500 hover:cursor-pointer hover:bg-red-50 hover:text-red-700"
+                className="shrink-0 rounded px-2 py-1 text-sm font-medium text-red-500 hover:cursor-pointer hover:bg-red-50 hover:text-red-700 dark:hover:bg-red-950 dark:hover:text-red-400"
                 onClick={() => handleDeleteTodo(todo.id)}
                 aria-label={`Delete ${todo.title}`}
             >

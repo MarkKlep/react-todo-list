@@ -33,17 +33,15 @@ export default function Home() {
   return (
     <div className="flex w-full flex-1 justify-center px-4 py-10">
       <div className="w-full max-w-md">
-        <h1 className="text-2xl font-semibold text-gray-900">Todo List</h1>
-
         <form
-          className="mt-6 flex gap-2"
+          className="flex gap-2"
           onSubmit={(event) => {
             event.preventDefault();
             handleAddTodo();
           }}
         >
           <input
-            className="flex-1 rounded border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none"
+            className="flex-1 rounded border border-gray-300 bg-white px-3 py-2 text-gray-900 focus:border-blue-500 focus:outline-none dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100"
             type="text"
             placeholder="What needs to be done?"
             value={inputValue}
@@ -57,21 +55,21 @@ export default function Home() {
           </button>
         </form>
 
-        <div className="mt-4 flex flex-wrap items-center gap-3 rounded border border-gray-200 bg-gray-50 p-3">
-          <label className="flex flex-1 items-center gap-2 text-sm text-gray-600">
+        <div className="mt-4 flex flex-wrap items-center gap-3 rounded border border-gray-200 bg-gray-50 p-3 dark:border-gray-800 dark:bg-gray-900">
+          <label className="flex flex-1 items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
             <span className="shrink-0">Search</span>
             <input
-              className="w-full flex-1 rounded border border-gray-300 px-3 py-2 text-gray-900 focus:border-blue-500 focus:outline-none"
+              className="w-full flex-1 rounded border border-gray-300 bg-white px-3 py-2 text-gray-900 focus:border-blue-500 focus:outline-none dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100"
               type="text"
               placeholder="Search todos..."
               value={inputSearch}
               onChange={handleSearchChange}
             />
           </label>
-          <label className="flex items-center gap-2 text-sm text-gray-600">
+          <label className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
             <span className="shrink-0">Status</span>
             <select
-              className="rounded border border-gray-300 px-3 py-2 text-gray-900 focus:border-blue-500 focus:outline-none"
+              className="rounded border border-gray-300 bg-white px-3 py-2 text-gray-900 focus:border-blue-500 focus:outline-none dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100"
               onChange={handleChangeStatusFilter}
               value={statusFilter}
             >
@@ -82,7 +80,7 @@ export default function Home() {
           </label>
         </div>
 
-        <div className="mt-4 overflow-hidden rounded border border-gray-200">
+        <div className="mt-4 overflow-hidden rounded border border-gray-200 dark:border-gray-800">
           <TodoList searchTerm={debouncedSearch} statusFilter={statusFilter} />
         </div>
       </div>
